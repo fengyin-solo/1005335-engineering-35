@@ -85,3 +85,6 @@ desktop.ini
 *.db
 *.pid
 *.seed
+
+# 播种流程的本机产物：快照、检查点、日志（由 seed/ 下的权威种子生成）
+.dev/

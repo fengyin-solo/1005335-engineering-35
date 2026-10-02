@@ -8,6 +8,7 @@
       <div class="page-actions">
         <button class="btn primary" type="button" @click="openCreate">登记发掘简报</button>
         <button class="btn" type="button" @click="exportRows">导出简报校核清单</button>
+        <button class="btn ghost" type="button" @click="resetRows">复位本模块</button>
       </div>
     </header>
 
@@ -65,6 +66,7 @@
 
     <footer class="page-foot">
       <span>共 {{ total }} 条简报校核记录</span>
+      <span class="reset-note">复位即回到种子数据，条数与运营概览一致</span>
       <span v-if="errorMessage" class="error-text">{{ errorMessage }}</span>
     </footer>
   </section>
@@ -78,6 +80,7 @@ import {
   listEntries,
   moduleMeta,
   runAction as applyAction,
+  resetModule,
 } from '@/api/local-service'
 import type { EntryRow } from '@/data/types'
 
@@ -106,6 +109,12 @@ function resetFilters() {
 
 function exportRows() {
   downloadEntries(meta.key)
+}
+
+function resetRows() {
+  errorMessage.value = ''
+  resetModule(meta.key)
+  reload()
 }
 
 function openCreate() {

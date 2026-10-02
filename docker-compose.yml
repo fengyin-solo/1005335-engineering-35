@@ -1,5 +1,8 @@
 services:
   frontend:
-    build: ./frontend
+    # 构建上下文取仓库根：播种脚本要读 ../seed/seed-data.json
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
       - "5173:5173"
