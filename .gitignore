@@ -85,3 +85,7 @@ desktop.ini
 *.db
 *.pid
 *.seed
+
+# ===== 本地播种流水线产物（npm run setup / make setup 生成） =====
+.dev/
+frontend/public/seed-snapshot.json

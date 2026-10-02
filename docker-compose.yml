@@ -1,5 +1,8 @@
 services:
   frontend:
-    build: ./frontend
+    build:
+      # 构建上下文设为仓库根：Dockerfile 里要调用根目录的 scripts/seed.mjs 播种流水线
+      context: .
+      dockerfile: frontend/Dockerfile
     ports:
       - "5173:5173"

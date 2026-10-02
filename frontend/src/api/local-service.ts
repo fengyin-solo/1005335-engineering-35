@@ -1,5 +1,5 @@
 import { MODULE_BY_KEY } from '@/data/modules'
-import { allRows, listRows, resetRows, saveRows } from '@/data/local-store'
+import { allRows, listRows, resetAllRows, resetRows, saveRows } from '@/data/local-store'
 import type { ActionResult, EntryRow, ModuleMeta, OverviewResult, PageResult } from '@/data/types'
 
 // 会写进数据的「往回走」动作：命中就把这条记录标成异常态，看板上能一眼看出来。
@@ -59,6 +59,17 @@ export function runAction(key: string, id: number, action: string): ActionResult
 export function resetModule(key: string): PageResult {
   resetRows(key)
   return listEntries(key)
+}
+
+export type ResetOverviewResult = {
+  version: string
+  overview: OverviewResult
+}
+
+/** 运行期整库复位：概览与所有模块清单一起回到种子条数。 */
+export function resetAllData(): ResetOverviewResult {
+  const { version } = resetAllRows()
+  return { version, overview: loadOverview() }
 }
 
 export function exportEntries(key: string): { filename: string; content: string } {

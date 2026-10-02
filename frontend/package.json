@@ -5,7 +5,12 @@
   "type": "module",
   "repoKind": "frontend-only",
   "scripts": {
+    "setup": "npm install && node ../scripts/seed.mjs",
+    "seed": "node ../scripts/seed.mjs",
+    "seed:reset": "node ../scripts/seed.mjs --reset",
+    "predev": "node ../scripts/seed.mjs --no-install",
     "dev": "vite",
+    "prebuild": "node ../scripts/seed.mjs --no-install",
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "typecheck": "vue-tsc --noEmit"
